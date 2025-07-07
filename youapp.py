@@ -373,43 +373,48 @@ def batch_predict_once(text_list):
 
 #---------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+from datetime import datetime, timedelta
+
 def recent_comment_summary():
-    # Convert publish_time to datetime object and sort by most recent
+    # Sort comments by publish_time in IST
     sorted_recent = sorted(
         list_of_predicted_labels,
-        key=lambda x: datetime.strptime(x[3], "%Y-%m-%dT%H:%M:%SZ"),
+        key=lambda x: datetime.strptime(x[3], "%Y-%m-%dT%H:%M:%SZ") + timedelta(hours=5, minutes=30),
         reverse=True
     )
-    
+
     # Pick most recent 250 comments
     recent_250 = sorted_recent[:250]
 
-    # Get sentiment counts
+    # Count sentiments
     recent_pos = sum(1 for _, label, *_ in recent_250 if label == "Positive")
     recent_neg = sum(1 for _, label, *_ in recent_250 if label == "Negative")
-    
+
     # --- Pie Chart ---
     labels = ['Positive', 'Negative']
     values = [recent_pos, recent_neg]
-    
+
     fig = go.Figure(data=[go.Pie(labels=labels, values=values, hole=0.4)])
     fig.update_layout(
         title_text="Sentiment Distribution of Most Recent 250 Comments",
         plot_bgcolor='rgba(0,0,0,0)',
         paper_bgcolor='rgba(0,0,0,0)',
     )
-    
+
     st.subheader("📊 Recent Comment Summary (Last 250)")
     st.plotly_chart(fig, use_container_width=True)
-    
+
     # --- Show 10 Most Recent Comments ---
     st.subheader("🕒 10 Most Recent Comments")
     for i, (comment, label, score, publish_time) in enumerate(sorted_recent[:10], start=1):
+        # Convert to IST for display
+        ist_time = datetime.strptime(publish_time, "%Y-%m-%dT%H:%M:%SZ") + timedelta(hours=5, minutes=30)
+
         st.markdown(f"""
         **{i}.** {comment}  
         ➤ Sentiment: `{'🟢 Positive' if label == 'Positive' else '🔴 Negative'}`  
         ➤ Score: `{score:.2f}`  
-        ➤ Published At: `{publish_time}`
+        ➤ Published At: `{ist_time.strftime("%Y-%m-%d %I:%M %p")} IST`
         """)
 
 #---------------------------------------------------------------------------------------------------------------------------------------------------------------
