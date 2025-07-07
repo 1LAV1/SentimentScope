@@ -10,7 +10,8 @@ spacy==3.7.4
 tqdm==4.66.4
 emoji==2.11.0
 contractions==0.1.73
-tensorflow==2.15.0
+tensorflow==2.10.0
+tensorflow-estimator==2.10.0
 plotly==5.22.0
 requests==2.31.0
 
