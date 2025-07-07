@@ -427,9 +427,19 @@ def search_comments(list_of_predicted_labels):
     - list_of_predicted_labels: list of (comment, sentiment, score, publish_time)
     """
 
-
     # Step 1: Create DataFrame
     df = pd.DataFrame(list_of_predicted_labels, columns=["comment", "sentiment", "score", "publish_time"])
+
+    # Convert publish_time to IST (manually add 5 hours 30 minutes)
+    def convert_to_ist(utc_str):
+        try:
+            utc_dt = datetime.strptime(utc_str, "%Y-%m-%dT%H:%M:%SZ")
+            ist_dt = utc_dt + timedelta(hours=5, minutes=30)
+            return ist_dt.strftime("%Y-%m-%d %I:%M %p") + " IST"
+        except Exception as e:
+            return utc_str  # fallback if format breaks
+
+    df["publish_time_ist"] = df["publish_time"].apply(convert_to_ist)
 
     # Step 2: Input search term
     search_term = st.text_input("🔍 Search Comments", placeholder="Type a keyword or phrase...")
@@ -448,7 +458,7 @@ def search_comments(list_of_predicted_labels):
                 <b>🗨️ Comment:</b> {row['comment']}<br>
                 🏷️ <b>Sentiment:</b> <code>{row['sentiment']}</code><br>
                 📊 <b>Score:</b> <code>{row['score']:.2f}</code><br>
-                🕒 <b>Published:</b> {row['publish_time']}
+                🕒 <b>Published:</b> {row['publish_time_ist']}
                 <hr style="margin: 8px 0;">
                 </div>
                 """, unsafe_allow_html=True)
