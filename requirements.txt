@@ -1,4 +1,4 @@
-streamlit==1.24.0
+streamlit==1.35.0
 google-api-python-client==2.107.0
 wordcloud==1.9.3
 matplotlib==3.9.0
@@ -10,8 +10,7 @@ spacy==3.7.4
 tqdm==4.66.4
 emoji==2.11.0
 contractions==0.1.73
-tensorflow==2.10.0
-tensorflow-estimator==2.10.0
+tensorflow==2.15.0
 plotly==5.22.0
 requests==2.31.0
 
