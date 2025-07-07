@@ -377,11 +377,13 @@ def recent_comment_summary():
     # Convert publish_time to datetime object and sort by most recent
     sorted_recent = sorted(
         list_of_predicted_labels,
-        key=lambda x: datetime.fromisoformat(x[3]),
+        key=lambda x: datetime.strptime(x[3], "%Y-%m-%dT%H:%M:%SZ"),
         reverse=True
     )
+    
     # Pick most recent 250 comments
     recent_250 = sorted_recent[:250]
+
     # Get sentiment counts
     recent_pos = sum(1 for _, label, *_ in recent_250 if label == "Positive")
     recent_neg = sum(1 for _, label, *_ in recent_250 if label == "Negative")
@@ -393,8 +395,8 @@ def recent_comment_summary():
     fig = go.Figure(data=[go.Pie(labels=labels, values=values, hole=0.4)])
     fig.update_layout(
         title_text="Sentiment Distribution of Most Recent 250 Comments",
-        plot_bgcolor='rgba(0,0,0,0)',   # Transparent plot area
-        paper_bgcolor='rgba(0,0,0,0)',  # Transparent outer area
+        plot_bgcolor='rgba(0,0,0,0)',
+        paper_bgcolor='rgba(0,0,0,0)',
     )
     
     st.subheader("📊 Recent Comment Summary (Last 250)")
