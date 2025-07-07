@@ -237,7 +237,7 @@ def preprocessing(input_text):
 @st.cache_resource
 def load_model():
     from tensorflow.keras.models import load_model
-    return load_model(r"sentiment_bilstm_model.keras")
+    return load_model(r"sentiment_bilstm_model.h5")
 
 @st.cache_resource
 def load_tokenizer():
