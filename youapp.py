@@ -285,7 +285,7 @@ def generate_wordcloud_excluding_oov(text_list, tokenizer):
             
 #---------------------------------------------------------------------------------------------------------------------------------------------------------------
             
-def get_comments_with_time(video_id, api_key=API_KEY, target_count=100000):
+def get_comments_with_time(video_id, api_key=API_KEY, target_count=20000):
     comments = []
     url = "https://www.googleapis.com/youtube/v3/commentThreads"
     params = {
