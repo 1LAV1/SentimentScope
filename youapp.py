@@ -497,18 +497,18 @@ def about_me_section():
 
     # --- Title and Greeting ---
     st.markdown("""
-        ## 👋 Hi, I'm **Suraj Kumar**
+        ## 👋 Hi, I'm **Lav Kumar **
         <h6 style='color:red; font-weight:normal;'>🚀 Passionate about Deep Learning, NLP, and Building Real-Time ML Applications</h6>
     """, unsafe_allow_html=True)
 
     # --- Social Links ---
     st.markdown("""
     <div style="margin-top: 10px;">
-        <a href="https://www.linkedin.com/in/suraj-kumar-a22608260/">
+        <a href="https://www.linkedin.com/in/lav-kumar-singh-1a200a250/">
             <img src="https://img.shields.io/badge/LinkedIn-blue?style=for-the-badge&logo=linkedin" alt="LinkedIn">
         </a>
         &nbsp;
-        <a href="https://github.com/surajkumar4117">
+        <a href="https://github.com/1LAV1">
             <img src="https://img.shields.io/badge/GitHub-black?style=for-the-badge&logo=github" alt="GitHub">
         </a>
     </div>
