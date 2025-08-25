@@ -1,6 +1,6 @@
 # 🎯 SentimentScope: YouTube Comment Sentiment Analyzer
 
-## 🚀 [Live Demo](https://sentimentscope-s8shgt9krsvzsglgcwcjmd.streamlit.app/)
+## 🚀 [Live Demo](https://sentimentscope-xyjav2sggzfvv4bhensors.streamlit.app/)
 
 **SentimentScope** is a real-time sentiment analysis tool for YouTube videos. It fetches comments using the YouTube Data API and analyzes them using a deep learning model built with NLP libraries like SpaCy, NLTK, and a BiLSTM architecture powered by TensorFlow/Keras. The application is deployed with a clean and interactive Streamlit UI.
 
@@ -53,5 +53,5 @@
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/SentimentScope.git
+   git clone https://github.com/1LAV1/SentimentScope.git
    cd SentimentScope
